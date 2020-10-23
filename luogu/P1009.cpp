@@ -2,45 +2,41 @@
 using namespace std;
 typedef long long ll;
 int c[50500],e[50500];
-string gjc(string abc,string acd){
-    char a1[100005],b1[100005];
-    int a[100005],b[100005],e[100005];
-    for(int i=0;i<abc.length();i++){
-        a1[i+1]=abc[i];
-    }
-    for(int i=0;i<acd.length();i++){
-        b1[i+1]=acd[i];
-    }
-    string d="";
-    a[0]=strlen(a1);
-	b[0]=strlen(b1);
-	for(int i=1;i<=a[0];i++) a[i]=a1[a[0]-i]-'0';
-	for(int i=1;i<=b[0];i++) b[i]=b1[b[0]-i]-'0';
-	for(int i=1;i<=a[0];i++){
-		for(int j=1;j<=b[0];j++){
-			e[i+j-1]+=a[i]*b[j];
+string gjc(string s,string x){
+    string d;
+    int a[2010],b[2010],c[40100];
+	int i,j;
+	memset(a,0,sizeof(a)); 
+	memset(b,0,sizeof(b)); 
+	memset(c,0,sizeof(c)); 
+	a[0]=s.length();
+	for(i=1;i<=a[0];i++)
+	{
+		a[i]=s[a[0]-i]-'0';	
+	}
+	b[0]=x.length();
+	for(i=1;i<=b[0];i++)
+	{
+		b[i]=x[b[0]-i]-'0';	
+	}
+	c[0]=a[0]+b[0]-1;
+	for(j=1;j<=b[0];j++)
+	{
+		for(i=1;i<=a[0];i++)
+		{
+			c[i+j-1]+=a[i]*b[j];
+			c[i+j]+=c[i+j-1]/10;
+			c[i+j-1]%=10;
+            //进位处理
 		}
 	}
-	int len=a[0]+b[0];
-	for(int i=1;i<len;i++){
-		if(e[i]>=10){
-			e[i+1]+=e[i]/10;
-			e[i]%=10;
-		}
-	}
-	for(int i=len;i>=1;i--){
-		if(e[i]==0&&len!=1){
-			len--;
-		}else if(e[i]!=0){
-			break;
-		}
-	}
-    for(int i=len;i>=1;i--){
-		d+=(e[i]+'0');
-	}
+	if(c[c[0]+1]>=1) c[0]++;
+	while(c[c[0]]==0&&c[0]>1) --c[0];
+	for(i=c[0];i>=1;i--) d+=(c[i]+'0');
     return d;
 }
-void gjj(string a,string b){
+string gjj(string a,string b){
+    string d="";
     if(max(a.length(),b.length())!=a.length()) swap(a,b);
     for(int i=b.length();i<a.length();i++){
         b="0"+b;
@@ -52,7 +48,11 @@ void gjj(string a,string b){
         c[i+1]=(i1+i2+i3)%10;
         c[i]=(i1+i2+i3)/10;
     }
-    return ;
+    for(int i=0;i<=max(a.length(),b.length());i++){
+        if(i==0&&c[0]==0) continue;
+        d+=c[i]+'0';
+    }
+    return d;
 }
 int main()
 {
@@ -68,19 +68,17 @@ int main()
     //cout<<gjc(a,b)<<endl;
     int n;
     cin>>n;
-    string ans2="0";
-    for(int i=1;i<=n;i++){
-        string ans="1";
-        for(int j=2;j<=i;j++){
-            ans=gjc(((char)(j+48)+""),ans);
+    string ans="0";
+    for(int i=1;i<=n;i++) {
+        string ans2="1";
+        for(int j=2;j<=i;j++) {
+            string temp="";
+            if(j>=10) temp+=((j/10)+'0');
+            temp+=(j%10+'0');
+            ans2=gjc(ans2,temp);
         }
-        gjj(ans,ans2);
-        ans2="";
-        for(int i=0;i<=max(ans.length(),ans2.length());i++){
-            if(i==0&&c[0]==0) continue;
-            ans2+=c[i]+'0';
-        }
+        ans=gjj(ans,ans2);
     }
-    cout<<ans2<<endl;
+    cout<<ans<<endl;
     return 0;
 }
