@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 ll n,p,t,a[1000005],b[1000005],c[1000005];
-unordered_map<ll,ll>dp;
+map<ll,ll>dp;
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
