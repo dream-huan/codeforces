@@ -3,17 +3,6 @@ using namespace std;
 
 int n=1,a[100005],c[100005],d[100005];
 
-int lis(){
-    memset(c,0,sizeof(c));
-    c[0]=a[0];
-    int temp=0;
-    for(int i=0;i<n;i++){
-        if(a[i]>=c[temp]) c[++temp]=a[i];
-        else *upper_bound(c,c+temp,a[i])=a[i];
-    }
-    return temp;
-}
-
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
