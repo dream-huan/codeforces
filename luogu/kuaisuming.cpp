@@ -12,7 +12,7 @@ ll quickpow(int n,int m){
     }
     return ans%p;
 }
-
+//wwwew
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
