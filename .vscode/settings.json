@@ -6,6 +6,14 @@
         "*.tcc": "cpp",
         "string": "cpp",
         "istream": "cpp",
-        "iomanip": "cpp"
-    }
+        "iomanip": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "initializer_list": "cpp",
+        "valarray": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "vector": "cpp"
+    },
+    "python.pythonPath": "/opt/python/latest/bin/python"
 }
