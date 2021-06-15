@@ -1,25 +1,25 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int cs[3]={2,3,5};
-typedef long long ll;
+
+void solve(){
+    int n,len;
+    cin>>n>>len;
+    vector<int>v(n);
+    vector<int>w(n);
+    for(int i=0;i<n;i++) cin>>v[i]>>w[i];
+    vector<int> dp(len);
+    for(int i=1;i<n;i++){
+        for(int j=len;j>=v[i];j--){
+            dp[j]=max(dp[j],dp[j-v[i]]+w[i]);
+        }
+    }
+    cout<<dp[len]<<endl;
+}
 
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    ll ans=1;
-    priority_queue<ll,vector<ll>,greater<ll>>a;
-    set<int>b;
-    a.push(1);
-    b.insert(1);
-    for(int i=1;;i++){
-        ll ans=a.top();
-        a.pop();
-        if(i==1500) {cout<<ans<<endl;break;}
-        for(int j=0;j<3;j++){
-            ll t=ans*cs[j];
-            if(!b.count(t)) b.insert(t),a.push(t);
-        }
-    }
+    solve();
     return 0;
 }

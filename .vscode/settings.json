@@ -13,7 +13,8 @@
         "valarray": "cpp",
         "deque": "cpp",
         "list": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iosfwd": "cpp"
     },
     "python.pythonPath": "/opt/python/latest/bin/python"
 }
