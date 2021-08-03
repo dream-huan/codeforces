@@ -50,7 +50,7 @@ void process(){
     //连接成功 收到地址
     cout<<"accept client"<<inet_ntoa(remoto_addr.sin_addr)<<" port:"<<remoto_addr.sin_port<<"\n";
     // len=recv(client_sockfd,recv_buf,strlen(recv_buf),0);
-    while(len=recv(client_sockfd,recv_buf,strlen(recv_buf),0)){
+    do{
         string s(&recv_buf[0],&recv_buf[len]);
         int uid=-1;
         bool isok=false;
@@ -67,7 +67,7 @@ void process(){
             int choice=s[s.length()-1];
 
         }
-    }
+    }while(len=recv(client_sockfd,recv_buf,strlen(recv_buf),0));
     close(client_sockfd);
     close(server_sockfd);
 }
