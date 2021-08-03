@@ -74,12 +74,12 @@ void writereports(string file){
         out<<i->first<<"*"<<i->second<<endl;
     }
     out<<"}"<<endl;
-    out<<"4星:"<<four<<"个,4星综合概率为"<<(double)(four*100.0/total)<<"%包括{"<<endl;
+    out<<"4星:"<<four<<"个,4星综合概率为"<<(double)(four*100.0/total)<<"%,包括{"<<endl;
     for(map<string,int>::iterator i=ffourstar.begin();i!=ffourstar.end();i++){
         out<<i->first<<"*"<<i->second<<endl;
     }
     out<<"}"<<endl;
-    out<<"3星:"<<three<<"个,3星综合概率为"<<(double)(three*100.0/total)<<"%包括{"<<endl;
+    out<<"3星:"<<three<<"个,3星综合概率为"<<(double)(three*100.0/total)<<"%,包括{"<<endl;
     for(map<string,int>::iterator i=tthreestar.begin();i!=tthreestar.end();i++){
         out<<i->first<<"*"<<i->second<<endl;
     }
@@ -346,21 +346,21 @@ void sweepstakes(int times=1){
             if(temp==3) temp=4,three--,four++;
         }
         if(temp==5){
-            cout<<"5星:"<<fivestar[number%sumfive];
+            cout<<"5星:"<<fivestar[number%sumfive+1];
             avgfive.push_back(total);
-            if(!mfind(fivestar[number%sumfive],5)) ffivestar.insert(pair<string,int>(fivestar[number%sumfive],1));
-            writeText("data.txt",fivestar[number%sumfive]+"(五星)");
+            if(!mfind(fivestar[number%sumfive+1],5)) ffivestar.insert(pair<string,int>(fivestar[number%sumfive+1],1));
+            writeText("data.txt",fivestar[number%sumfive+1]+"(五星)");
         }
         else if(temp==4){
-            cout<<"4星:"<<fourstar[number%sumfour];
+            cout<<"4星:"<<fourstar[number%sumfour+1];
             avgfour.push_back(total);
-            if(!mfind(fourstar[number%sumfour],4)) ffourstar.insert(pair<string,int>(fourstar[number%sumfour],1));
-            writeText("data.txt",fourstar[number%sumfour]+"(四星)");
+            if(!mfind(fourstar[number%sumfour+1],4)) ffourstar.insert(pair<string,int>(fourstar[number%sumfour+1],1));
+            writeText("data.txt",fourstar[number%sumfour+1]+"(四星)");
         }
         else{
-            cout<<"3星:"<<threestar[number%sumthree]; 
-            if(!mfind(threestar[number%sumthree],3)) tthreestar.insert(pair<string,int>(threestar[number%sumthree],1));
-            writeText("data.txt",threestar[number%sumthree]+"(三星)");
+            cout<<"3星:"<<threestar[number%sumthree+1]; 
+            if(!mfind(threestar[number%sumthree+1],3)) tthreestar.insert(pair<string,int>(threestar[number%sumthree+1],1));
+            writeText("data.txt",threestar[number%sumthree+1]+"(三星)");
         }
         if(times!=0) cout<<",";
     }
@@ -382,6 +382,7 @@ void pseudorandomsweepstakes(int times=1){
 }
 
 void m(){
+    // for(int i=0;i<sumthree;i++) cout<<threestar[i]<<",";
     int options;
     cout<<"现在的概率为："<<endl<<"五星获取概率："<<fivep*100<<"%"<<endl<<"四星获取概率："<<fourp*100<<"%"<<endl<<"三星获取概率："<<threep*100<<"%"<<endl<<fourpt<<"抽内必定获取到四星角色"<<endl<<"若从第"<<increaset<<"抽之前都没有获取到5星角色，则接下来每次获取5星的概率提升"<<increasep*100<<"%"<<endl<<"接下来请选择:"<<endl<<"1.抽取一次"<<endl<<"2.抽取十次"<<endl<<"3.数据统计"<<endl<<"4.清空数据"<<endl<<"5.生成抽卡分析报告"<<endl<<"其他.退出程序"<<endl;
     cout<<"随机方式:"<<(randommethod=="Pseudo-random"?"伪随机":"真随机")<<endl;

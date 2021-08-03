@@ -1,33 +1,25 @@
-/*
- * @Author: dream 
- * @Date: 2020-10-23 07:24:41 
- * @Last Modified by:   dream 
- * @Last Modified time: 2020-10-23 07:24:41 
- */
 #include<bits/stdc++.h>
 using namespace std;
-#pragma GCC optimize(2)
 
-inline int read(){
-    int s=0,f=1;
-    char ch=getchar();
-    while(ch<'0'||ch>'9'){
-        if(ch=='-') f=-1;
-        ch=getchar();
+void solve(){
+    int n,len;
+    cin>>n>>len;
+    vector<int>v(n);
+    vector<int>w(n);
+    for(int i=0;i<n;i++) cin>>v[i]>>w[i];
+    vector<int> dp(len);
+    for(int i=1;i<n;i++){
+        for(int j=len;j>=v[i];j--){
+            dp[j]=max(dp[j],dp[j-v[i]]+w[i]);
+        }
     }
-    while(ch>='0'&&ch<='9'){
-        s=(s<<3)+(s<<1)+(ch^48);
-        ch=getchar();
-    }
-    return s*f;
+    cout<<dp[len]<<endl;
 }
 
 int main(){
-    //ios::sync_with_stdio(false);
-    //cin.tie(0);
-    //cout.tie(0);
-    int b;
-    b=read();
-    cout<<b<<endl;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    solve();
     return 0;
 }
