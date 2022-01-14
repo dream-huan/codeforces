@@ -16,7 +16,7 @@ signed main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    int x;
+    long long x;
     cin>>x;
     for(int i=1;i*i<=1000000;i++){
         dp[i]=i*i;

@@ -15,7 +15,11 @@
         "list": "cpp",
         "vector": "cpp",
         "iosfwd": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "type_traits": "cpp",
+        "new": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp"
     },
     "python.pythonPath": "/opt/python/latest/bin/python"
 }

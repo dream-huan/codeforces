@@ -2,12 +2,8 @@
 using namespace std;
 
 int main(){
-    string s="";
-    for(int i=0;i<26;i++){
-        s+=(char)(i+'a');
-        s+=(char)(i+'a');
-        s+=(char)(i+'a');
-    }
-    cout<<s<<endl;
+    float f;
+    scanf("%f",&f);
+    if(f>90) printf("%.1f",f);
     return 0;
 }

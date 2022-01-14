@@ -62,8 +62,8 @@ int main(){
         c[find(p1)]=find(p2);
     }
     for(int i=1;i<=n;i++) cin>>b[i],sum2+=b[i];
-    for(int i=1;i<=n;i++) if(!g.count(find(i))) sum++,g.insert(find(i));
-    ans=(ceil)(sum2*1.0/sum);
+    for(int i=1;i<=n;i++) g.insert(find(i));
+    ans=(ceil)(sum2*1.0/g.size());
     cout<<ans<<endl;
     return 0;
 }
